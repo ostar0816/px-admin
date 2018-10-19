@@ -1,0 +1,47 @@
+<div id="coming-soon" fxLayout="column" pyxisPerfectScrollbar>
+
+  <div id="coming-soon-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+    <div id="coming-soon-form" *pyxisIfOnDom [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+      <div class="top">
+
+        <div class="logo">
+          <img src="assets/images/logos/pyxis.svg">
+        </div>
+
+        <div class="title">Thank you for checking this app.</div>
+        <div class="subtitle">It’s not quite ready yet, but it will be ready in approximately:
+        </div>
+
+        <pyxis-countdown eventDate="2018-08-30"></pyxis-countdown>
+
+      </div>
+
+      <form name="comingSoonForm" [formGroup]="comingSoonForm" novalidate>
+
+        <div class="message">
+          If you would like to be notified when this website is ready, you can subscribe to our e-mail list.
+        </div>
+
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="comingSoonFormErrors.email.required">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="!comingSoonFormErrors.email.required && comingSoonFormErrors.email.email">
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="accent" class="subscribe-button" aria-label="SUBSCRIBE" [disabled]="comingSoonForm.invalid">
+          SUBSCRIBE
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

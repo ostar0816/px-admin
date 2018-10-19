@@ -1,0 +1,63 @@
+<mat-table #table [dataSource]="dataSource" *pyxisIfOnDom [@animateStagger]="{value:'50'}">
+  <!-- Checkbox Column -->
+  <ng-container cdkColumnDef="checkbox">
+    <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+    <mat-cell *cdkCellDef="let member">
+      <mat-checkbox [(ngModel)]="checkboxes[member.id]" (ngModelChange)="onSelectedChange(member.id)" (click)="$event.stopPropagation()">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Avatar Column -->
+  <ng-container cdkColumnDef="avatar">
+    <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+    <mat-cell *cdkCellDef="let member">
+      <img class="avatar" *ngIf="member.avatar" [alt]="member.name" [src]="member.avatar" />
+    </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container cdkColumnDef="name">
+    <mat-header-cell *cdkHeaderCellDef>Name</mat-header-cell>
+    <mat-cell *cdkCellDef="let member">
+      <p class="text-truncate font-weight-600">{{member.firstName}} {{member.lastName}}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container cdkColumnDef="position">
+    <mat-header-cell *cdkHeaderCellDef>Position</mat-header-cell>
+    <mat-cell *cdkCellDef="let member">
+      <p class="text-truncate font-weight-600">{{member.position}}</p>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Buttons Column -->
+  <ng-container cdkColumnDef="buttons">
+    <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+    <mat-cell *cdkCellDef="let member">
+      <div fxFlex="row" fxLayoutAlign="end center">
+        <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More" (click)="$event.stopPropagation();">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #moreMenu="matMenu">
+          <button mat-menu-item aria-label="edit" (click)="editMember(member)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item aria-label="delete" (click)="deleteMember(member)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+      </div>
+
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *cdkHeaderRowDef="displayedColumns" class="pt-0 pl-24 pr-8"></mat-header-row>
+  <mat-row *cdkRowDef="let member; columns: displayedColumns;" class="member" (click)="editMember(member)" [ngClass]="{'mat-light-blue-50-bg':checkboxes[member.id]}"
+    matRipple [@animate]="{value:'*',params:{y:'100%'}}">
+  </mat-row>
+</mat-table>

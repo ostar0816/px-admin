@@ -1,0 +1,87 @@
+<div id="category-edit" class="page-layout carded fullwidth" pyxisPerfectScrollbar>
+
+  <div class="top-bg mat-accent-bg"></div>
+
+  <div class="center">
+
+    <div class="header white-fg" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <div fxLayout="row" fxLayoutAlign="start center">
+
+        <button class="mr-0 mr-sm-16" mat-icon-button [routerLink]="'/article-management/categories'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <div class="category-image mr-8 mr-sm-16 mat-white-bg" fxlayout="row" fxLayoutAlign="center center" *pyxisIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+          <div class="h-50-p">
+            <img [src]="category.mark">
+          </div>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="start start" *pyxisIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          <div class="h2" *ngIf="pageType ==='edit'">
+            {{category.title}}
+          </div>
+          <div class="h2" *ngIf="pageType ==='new'">
+            New Category
+          </div>
+          <div class="subtitle secondary-text">
+            <span>Category Detail</span>
+          </div>
+        </div>
+      </div>
+
+      <button mat-raised-button class="save-category-button mat-white-bg mt-16 mt-sm-0" [disabled]="categoryForm.invalid" *ngIf="pageType ==='new'"
+        (click)="addCategory()">
+        <span>ADD</span>
+      </button>
+
+      <!-- <button mat-raised-button class="save-category-button mat-white-bg mt-16 mt-sm-0" [disabled]="categoryForm.invalid || categoryForm.pristine" -->
+      <button mat-raised-button class="save-category-button mat-white-bg mt-16 mt-sm-0" *ngIf="pageType ==='edit'" (click)="saveCategory()">
+        <span>SAVE</span>
+      </button>
+    </div>
+
+    <div class="content-card mat-white-bg">
+
+      <div class="toolbar px-24 py-8">
+
+        <span>Set the category mark image, title and description.</span>
+
+      </div>
+
+
+      <div class="content p-24" pyxisPerfectScrollbar>
+
+        <form name="categoryForm" [formGroup]="categoryForm" class="category w-100-p" fxLayout="column" fxFlex>
+
+          <label for="category-mark" class="mb-4">Category Mark</label>
+          <div id="category-mark" class="mb-20" fxLayout="row" fxLayoutAlign="start center">
+            <div class="category-image" fxLayout="row" fxLayoutAlign="center center">
+              <div class="w-50-p"><img class="media" [src]="category.mark"></div>
+            </div>
+
+            <div>
+              <input #markUpload type="file" name="mark" formControlName="mark" (change)="onFileSelected($event)" hidden />
+              <button mat-raised-button class="mat-accent ml-24" (click)="markUpload.click()">Choose Image</button>
+            </div>
+          </div>
+
+          <mat-form-field class="w-100-p mb-20">
+            <input matInput name="title" formControlName="title" placeholder="Title" required>
+          </mat-form-field>
+
+          <mat-form-field class="w-100-p">
+            <textarea matInput name="description" formControlName="description" placeholder="Description" rows="3" required>
+            </textarea>
+          </mat-form-field>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

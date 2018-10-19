@@ -1,0 +1,92 @@
+<div id="categories" class="page-layout carded fullwidth">
+
+  <div class="top-bg mat-accent-bg"></div>
+
+  <div class="center">
+
+    <div class="header white-fg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+      <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon class="logo-icon mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">folder</mat-icon>
+        <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Categories</span>
+      </div>
+
+      <div class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row" fxLayoutAlign="start center">
+        <label for="search" class="mr-8">
+          <mat-icon class="secondary-text">search</mat-icon>
+        </label>
+        <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
+          <input id="search" matInput #filter placeholder="Search">
+        </mat-form-field>
+      </div>
+
+      <button mat-raised-button [routerLink]="'/article-management/category-edit/new'" class="add-category-button mat-white-bg my-12 mt-sm-0">
+        <span>NEW CATEGORY</span>
+      </button>
+
+    </div>
+
+    <div class="content-card mat-white-bg">
+
+      <mat-table class="categories-table" #table [dataSource]="dataSource" matSort *pyxisIfOnDom [@animateStagger]="{value:'50'}">
+
+        <ng-container cdkColumnDef="mark">
+          <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+          <mat-cell *cdkCellDef="let category">
+            <img class="category-image" [src]="category.mark" />
+          </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="title">
+          <mat-header-cell *cdkHeaderCellDef mat-sort-header>Title</mat-header-cell>
+          <mat-cell *cdkCellDef="let category">
+            <p class="text-truncate">{{category.title}}</p>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="description">
+          <mat-header-cell *cdkHeaderCellDef mat-sort-header>Description</mat-header-cell>
+          <mat-cell *cdkCellDef="let category">
+            <p class="text-truncate">{{category.description}}</p>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container cdkColumnDef="buttons">
+          <mat-header-cell *cdkHeaderCellDef></mat-header-cell>
+          <mat-cell *cdkCellDef="let category">
+            <div fxFlex="row" fxLayoutAlign="end center">
+              <button mat-icon-button [matMenuTriggerFor]="moreMenu" aria-label="More" (click)="$event.stopPropagation();">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+
+              <mat-menu #moreMenu="matMenu">
+                <button mat-menu-item aria-label="edit" [routerLink]="'/article-management/category-edit/' + category._id">
+                  <mat-icon>edit</mat-icon>
+                  <span>Edit</span>
+                </button>
+
+                <button mat-menu-item aria-label="remove" (click)="deleteCategory(category)">
+                  <mat-icon>delete</mat-icon>
+                  <span>Delete</span>
+                </button>
+              </mat-menu>
+            </div>
+
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *cdkHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *cdkRowDef="let category; columns: displayedColumns;" class="category" matRipple [routerLink]="'/article-management/category/'+category._id" [@animate]="{value:'*',params:{y:'100%'}}">
+        </mat-row>
+
+      </mat-table>
+
+      <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
+
+    </div>
+
+  </div>
+
+</div>

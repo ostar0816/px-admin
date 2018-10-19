@@ -1,0 +1,27 @@
+<mat-sidenav-container>
+  <div id="app-main-content">
+    <div id="wrapper">
+      <pyxis-sidebar [name]="'navbar'"
+                     [folded]="pyxisSettings.layout.navigationFolded"
+                     [lockedOpen]="'gt-md'"
+                     class="left-navbar" [ngClass]="pyxisSettings.colorClasses.navbar"
+                     *ngIf="pyxisSettings.layout.navigation === 'left' || pyxisSettings.layout.navigation === 'top'">
+        <app-navbar layout="vertical"></app-navbar>
+      </pyxis-sidebar>
+
+      <div class="content-wrapper">
+
+        <ng-container *ngIf="pyxisSettings.layout.toolbar === 'below'">
+          <app-toolbar class="below" [ngClass]="pyxisSettings.colorClasses.toolbar"></app-toolbar>
+        </ng-container>
+
+        <app-content></app-content>
+
+        <ng-container *ngIf="pyxisSettings.layout.footer === 'below'">
+          <app-footer class="below" [ngClass]="pyxisSettings.colorClasses.footer"></app-footer>
+        </ng-container>
+
+      </div>
+    </div>
+  </div>
+</mat-sidenav-container>

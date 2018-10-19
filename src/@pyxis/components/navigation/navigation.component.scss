@@ -1,0 +1,10 @@
+@import 'src/@pyxis/scss/pyxis';
+pyxis-navigation {
+  display: flex;
+  flex: 1 0 auto;
+  #main-navigation {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+}

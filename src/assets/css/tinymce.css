@@ -1,0 +1,49 @@
+html {
+    background-color: #b6b6b6;
+}
+
+body {
+    max-width: 880px;
+    margin: auto;
+    height: auto;
+    min-height: 100vh;
+    margin-top: -19px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+    padding: 30px;
+}
+
+h1 {
+    font-size: 54px;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.84);
+    line-height: 65px;
+    margin-bottom: 25px;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.54);
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 16px;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.34);
+    margin-bottom: 30px;
+}
+
+p {
+    font-size: 19px;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.84);
+}
+
+img {
+    display: block;
+    filter: drop-shadow(0px 0px 6px rgba(133, 132, 132, 0.5));
+    margin: 50px auto 60px;
+    max-width: 100%;
+    height: auto !important;
+}

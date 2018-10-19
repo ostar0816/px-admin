@@ -1,0 +1,92 @@
+@import '~@angular/material/theming';
+
+$mat-white: (
+    500: white,
+    contrast: (
+        500: $black-87-opacity
+    )
+);
+
+$mat-black: (
+    500: black,
+    contrast: (
+        500: white,
+    )
+);
+
+$mat-pyxisdark: (
+    50: #ECECEE,
+    100: #C5C6CB,
+    200: #9EA1A9,
+    300: #7D818C,
+    400: #5C616F,
+    500: #3C4252,
+    600: #353A48,
+    700: #2D323E,
+    800: #262933,
+    900: #1E2129,
+    A100: #C5C6CB,
+    A200: #9EA1A9,
+    A400: #5C616F,
+    A700: #2D323E,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: white,
+        400: white,
+        500: $white-87-opacity,
+        600: $white-87-opacity,
+        700: $white-87-opacity,
+        800: $white-87-opacity,
+        900: $white-87-opacity,
+        A100: $black-87-opacity,
+        A200: $white-87-opacity,
+        A400: $white-87-opacity,
+        A700: $white-87-opacity,
+    )
+);
+
+$mat-pyxis-accent: (
+    50 : #eeeafe,
+    100 : #d4ccfc,
+    200 : #b7aafa,
+    300 : #9a87f7,
+    400 : #856ef6,
+    500 : #6f54f4,
+    600 : #674df3,
+    700 : #5c43f1,
+    800 : #523aef,
+    900 : #4029ec,
+    A100 : #ffffff,
+    A200 : #f7f6ff,
+    A400 : #cac3ff,
+    A700 : #b3aaff,
+    contrast: (
+        50: $dark-primary-text,
+        100: $dark-primary-text,
+        200: $dark-primary-text,
+        300: $dark-primary-text,
+        400: $dark-primary-text,
+        500: $light-primary-text,
+        600: $light-primary-text,
+        700: $light-primary-text,
+        800: $light-primary-text,
+        900: $light-primary-text,
+        A100: $dark-primary-text,
+        A200: $dark-primary-text,
+        A400: $dark-primary-text,
+        A700: $light-primary-text,
+    )
+);
+
+// Palettes
+$primary: mat-palette($mat-pyxisdark);
+$accent: mat-palette($mat-pyxis-accent, 600, 400, 700);
+$warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$theme: mat-light-theme($primary, $accent, $warn);
+
+$background: map-get($theme, background);
+$foreground: map-get($theme, foreground);
